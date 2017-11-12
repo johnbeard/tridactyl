@@ -535,11 +535,17 @@ export async function reset(key: string){
 // {{{ HINTMODE
 
 //#background_helper
-import {hintPageSimple} from './hinting_background'
+import {hintPageSimple, hintPageAnchorPoints} from './hinting_background'
 
 //#background
 export function hint() {
     hintPageSimple()
+    mode('hint')
+}
+
+//#background
+export function hintanchorable() {
+    hintPageAnchorPoints()
     mode('hint')
 }
 

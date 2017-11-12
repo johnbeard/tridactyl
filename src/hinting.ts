@@ -178,9 +178,9 @@ function pushKey(ke) {
             1. Within viewport
             2. Not hidden by another element
 */
-function hintables() {
+function hintables(hintselectors = HINTTAGS_selectors) {
     /* return [...elementsByXPath(HINTTAGS)].filter(isVisible) as any as Element[] */
-    return Array.from(document.querySelectorAll(HINTTAGS_selectors)).filter(isVisible)
+    return Array.from(document.querySelectorAll(hintselectors)).filter(isVisible)
 }
 
 // XPath. Doesn't work properly for xhtml unless you double each element.
@@ -252,16 +252,19 @@ select,
 [tabindex]
 `
 
-// DEBUGGING
-/* hintPage(hintables(), hint=>mouseEvent(hint.target, 'click')) */
-/* addEventListener('keydown', pushKey) */
+function focusAndClick(hint) {
+    hint.target.focus()
+    mouseEvent(hint.target, 'click')
+}
 
 function hintPageSimple() {
     console.log("Hinting!")
-    hintPage(hintables(), hint=>{
-        hint.target.focus()
-        mouseEvent(hint.target, 'click')
-    })
+    hintPage(hintables(), focusAndClick)
+}
+
+function hintPageAnchorPoints() {
+    console.log("Hinting AnchorPoints!")
+    hintPage(hintables('[id]'), focusAndClick)
 }
 
 function selectFocusedHint() {
@@ -277,4 +280,5 @@ addListener('hinting_content', attributeCaller({
     selectFocusedHint,
     reset,
     hintPageSimple,
+    hintPageAnchorPoints,
 }))
