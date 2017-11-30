@@ -15,6 +15,9 @@
     "chrome_url_overrides": {
         "newtab": "static/newtab.html"
     },
+    "options_ui": {
+        "page": "static/settings.html"
+    },
     "content_scripts": [
         {
             "matches": [

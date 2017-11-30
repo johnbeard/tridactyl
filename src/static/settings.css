@@ -1,0 +1,23 @@
+/*
+ * Preferences page CSS
+ */
+
+form#TridactylSettings {
+    width: 100%;
+}
+
+textarea#TridactylRc {
+    width: 100%;
+    height: 20em;
+}
+
+.TridactylCtrlTitle {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.TridactylSettingsExplanation {
+    margin-top: 1em; 
+}

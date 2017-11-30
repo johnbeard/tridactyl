@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         background: "./src/background.ts",
         content: "./src/content.ts",
+        settings_page: "./src/settings_page.ts",
         commandline_frame: "./src/commandline_frame.ts",
     },
     output: {

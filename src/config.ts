@@ -137,7 +137,8 @@ export function set(target, value, property?){
         USERCONFIG[target][property] = value
     } else USERCONFIG[target] = value
     // Always save
-    save(get("storageloc"))
+    // Or not, if loading from RC
+    // save(get("storageloc"))
 }
 
 export function unset(target, property?){
@@ -174,6 +175,41 @@ browser.storage.sync.get("nmaps").then(nmaps => {
 function schlepp(settings){
     // "Import" is a reserved word so this will have to do
     Object.assign(USERCONFIG,settings)
+}
+
+import {parser} from './parsers/exmode'
+
+function parseRcCommands(rc: string) {
+
+    console.log("Parsing RC")
+
+    // this should be a proper parser, maybe PEGjs?
+    let lines = rc.split("\n")
+
+    for (let line of lines) {
+        console.log("Parsing RC line:", line)
+        // parser(line)
+    }
+}
+
+/**
+ * Apply commands from an RC-type file
+ *
+ * Current limitations: commands handled on a line-by-line basis only
+ */
+export function applyRcCommands(rc: string) {
+
+    console.log("Applying RC commands", rc)
+
+    parseRcCommands(rc)
+
+    // store the original text, so we can refill the text box on the settings
+    // page with it
+    // arguably, this is the only config that needs persistent storage?
+    set("tridactylrc", rc)
+    save(get("storageloc"))
+
+    console.log("Saved RC commands")
 }
 
 browser.storage.onChanged.addListener(
