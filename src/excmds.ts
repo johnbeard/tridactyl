@@ -444,7 +444,7 @@ export function urlparent (count = 1){
  * * Query replace mode: `urlmodify -q <query> <new_val>`
  *
  *   Replace the value of a query with a new one:
- *      * `http://e.com?id=foo` -> (`-q id bar`) -> `http://e.com?id=bar
+ *      * `http://e.com?id=foo` -> (`-q id bar`) -> `http://e.com?id=bar`
  *
  * * Query delete mode: `urlmodify -Q <query>`
  *
